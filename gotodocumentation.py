@@ -140,6 +140,9 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
     def cs_dash_doc(self, keyword, scope):
         open_url("dash://unity3d:%s" % keyword)
 
+    def cmake_doc(self, keyword, scope):
+        open_url('http://cmake.org/cmake/help/v2.8.8/cmake.html#command:%s' % keyword.lower())
+
     def run_command(self, command, callback=None, **kwargs):
         if not callback:
             callback = self.display_output
