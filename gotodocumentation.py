@@ -96,7 +96,7 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
         open_url("http://api.rubyonrails.org/?q=%s" % keyword)
 
     def rails_dash_doc(self, keyword, scope):
-        open_url("dash://:rails%s", % keyword)
+        open_url("dash://:rails%s" % keyword)
 
     def controller_doc(self, keyword, scope):
         open_url("http://api.rubyonrails.org/?q=%s" % keyword)
@@ -115,6 +115,9 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
 
     coffee_doc = js_doc
 
+    def python_dash_doc(self, keyword, scope):
+        open_url("dash://python:%s" % keyword)
+
     def python_doc(self, keyword, scope):
         """Not trying to be full on intellisense here, but want to make opening a
         browser to a docs.python.org search a last resort
@@ -124,9 +127,6 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
             return
 
         open_url("http://docs.python.org/search.html?q=%s" % keyword)
-
-    def python_dash_doc(self, keyword, scope):
-        open_url("dash://python:%s" % keyword)
 
     def clojure_doc(self, keyword, scope):
         open_url("http://clojuredocs.org/search?x=0&y=0&q=%s" % keyword)
