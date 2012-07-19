@@ -89,8 +89,14 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
     def php_doc(self, keyword, scope):
         open_url("http://php.net/%s" % keyword)
 
+    def php_dash_doc(self, keyword, scope):
+        open_url("dash://php:%s" % keyword)
+
     def rails_doc(self, keyword, scope):
         open_url("http://api.rubyonrails.org/?q=%s" % keyword)
+
+    def rails_dash_doc(self, keyword, scope):
+        open_url("dash://:rails%s", % keyword)
 
     def controller_doc(self, keyword, scope):
         open_url("http://api.rubyonrails.org/?q=%s" % keyword)
@@ -104,6 +110,9 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
     def js_doc(self, keyword, scope):
         open_url("https://developer.mozilla.org/en-US/search?q=%s" % keyword)
 
+    def js_dash_doc(self, keyword, scope):
+        open_url("dash://javascript:%s" % keyword)
+
     coffee_doc = js_doc
 
     def python_doc(self, keyword, scope):
@@ -116,8 +125,14 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
 
         open_url("http://docs.python.org/search.html?q=%s" % keyword)
 
+    def python_dash_doc(self, keyword, scope):
+        open_url("dash://python:%s" % keyword)
+
     def clojure_doc(self, keyword, scope):
         open_url("http://clojuredocs.org/search?x=0&y=0&q=%s" % keyword)
+
+    def clojure_dash_doc(self, keyword, scope):
+        open_url("dash://clojure:%s" % keyword)
 
     def go_doc(self, keyword, scope):
         open_url("http://golang.org/search?q=%s" % keyword)
