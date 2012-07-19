@@ -71,6 +71,17 @@ class GotoDocumentationCommand(sublime_plugin.TextCommand):
                 keyword = self.view.substr(word)
                 getattr(self, '%s_doc' % extracted_scope, self.unsupported)(keyword, scope)
 
+class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        for region in self.view.sel():
+            word = self.view.word(region)
+            if not word.empty():
+                # scope: "text.html.basic source.php.embedded.block.html keyword.other.new.php"
+                scope = self.view.scope_name(word.begin()).strip()
+                extracted_scope = scope.rpartition('.')[2]
+                keyword = self.view.substr(word)
+                getattr(self, '%s_dash_doc' % extracted_scope, self.unsupported)(keyword, scope)
+
     def unsupported(self, keyword, scope):
         sublime.status_message("This scope is not supported: %s" % scope.rpartition('.')[2])
 
@@ -85,6 +96,9 @@ class GotoDocumentationCommand(sublime_plugin.TextCommand):
 
     def ruby_doc(self, keyword, scope):
         open_url("http://api.rubyonrails.org/?q=%s" % keyword)
+
+    def ruby_dash_doc(self, keyword, scope):
+        open_url("dash://ruby:%s" % keyword)
 
     def js_doc(self, keyword, scope):
         open_url("https://developer.mozilla.org/en-US/search?q=%s" % keyword)
