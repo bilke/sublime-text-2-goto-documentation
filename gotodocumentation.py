@@ -110,6 +110,9 @@ class GotoDocumentationCommand(sublime_plugin.TextCommand):
     def smarty_doc(self, keyword, scope):
         open_url('http://www.smarty.net/%s' % keyword)
 
+    def cs_doc(self, keyword, scope):
+        open_url("dash://unity3d:%s" % keyword)
+
     def run_command(self, command, callback=None, **kwargs):
         if not callback:
             callback = self.display_output
