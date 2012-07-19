@@ -132,10 +132,10 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
         open_url("http://www.cplusplus.com/search.do?q=%s" % keyword)
 
     def c_dash_doc(self, keyword, scope):
-        open_url("dash://%s" % keyword)
+        open_url("dash://cpp:%s" % keyword)
 
     def cpp_dash_doc(self, keyword, scope):
-        open_url("dash://%s" % keyword)
+        open_url("dash://cpp:%s" % keyword)
 
     def cs_dash_doc(self, keyword, scope):
         open_url("dash://unity3d:%s" % keyword)
