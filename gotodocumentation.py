@@ -79,11 +79,12 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
                 # scope: "text.html.basic source.php.embedded.block.html keyword.other.new.php"
                 scope = self.view.scope_name(word.begin()).strip()
                 extracted_scope = scope.rpartition('.')[2]
+                extracted_scope = extracted_scope.replace("+", "p")
                 keyword = self.view.substr(word)
                 getattr(self, '%s_dash_doc' % extracted_scope, self.unsupported)(keyword, scope)
 
     def unsupported(self, keyword, scope):
-        sublime.status_message("This scope is not supported: %s" % scope.rpartition('.')[2])
+        sublime.status_message("This scope is not supported: %s" % scope.rpartition('.')[2].replace("+", "p"))
 
     def php_doc(self, keyword, scope):
         open_url("http://php.net/%s" % keyword)
@@ -123,6 +124,18 @@ class GotoDashDocumentationCommand(sublime_plugin.TextCommand):
 
     def smarty_doc(self, keyword, scope):
         open_url('http://www.smarty.net/%s' % keyword)
+
+    def c_doc(self, keyword, scope):
+        open_url("http://www.cplusplus.com/search.do?q=%s" % keyword)
+
+    def cpp_doc(self, keyword, scope):
+        open_url("http://www.cplusplus.com/search.do?q=%s" % keyword)
+
+    def c_dash_doc(self, keyword, scope):
+        open_url("dash://%s" % keyword)
+
+    def cpp_dash_doc(self, keyword, scope):
+        open_url("dash://%s" % keyword)
 
     def cs_dash_doc(self, keyword, scope):
         open_url("dash://unity3d:%s" % keyword)
